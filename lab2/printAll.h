@@ -1,4 +1,4 @@
 #ifndef PRINTALL_H_
 #define PRINTALL_H_
-    void printAll(const char **s[]);
+    void printAll(char **s);
 #endif
