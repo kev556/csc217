@@ -3,7 +3,7 @@
 #include <string.h>
 #include "mystrlen.h"
 
-char ** enterInput(int *max, int *maxidx) {
+char ** userInput(int *max, int *maxidx) {
     char *arr[5];
     int i = 0, maxidx = 0, max = 0;
 
