@@ -29,5 +29,8 @@ int main(void) {
 
     freeAll(arr , 5);
 
+    for (i = 0; i < 5; i++)
+        printf("%s\n", arr[i]);
+
     return 0;
 }
