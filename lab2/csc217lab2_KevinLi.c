@@ -2,8 +2,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mystrlen.h"
-#include "printAll.h"
 
+void freeAll(char **s, int size) {
+    for (int i = 0; i < size; i++)
+        free(s[i]);
+} 
 int main(void) {
     char *arr[5];
     int i = 0, max = 0, maxidx = 0;
@@ -27,8 +30,7 @@ int main(void) {
 
     printf("The largest string entered is [ %s ] with a length of %d \n", arr[maxidx], max);
 
-    for (i = 0; i < 5; i++)
-        free(arr[i]);
+    freeAll(arr , 5);
 
     return 0;
 }
