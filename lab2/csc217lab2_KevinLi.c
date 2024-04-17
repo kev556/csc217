@@ -6,7 +6,6 @@
 int main(void) {
     char *a[5];
     int i = 0, max = 0, maxidx = 0;
-    char *tp = malloc(102), *xp;
 
     for (i = 0; i < 5; i++) {
         char temp[102];
