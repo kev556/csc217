@@ -22,8 +22,10 @@ int main(void) {
             maxidx = i;
         }
     }
-    printAll(arr);
-    printf("The largest string entered is %s, with a length of %d \n", arr[maxidx], max);
+    for (i = 0; i < 5; i++)
+        printf("%s\n", arr[i]);
+
+    printf("The largest string entered is [ %s ] with a length of %d \n", arr[maxidx], max);
 
     for (i = 0; i < 5; i++)
         free(arr[i]);
