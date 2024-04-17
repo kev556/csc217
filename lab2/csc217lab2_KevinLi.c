@@ -2,11 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mystrlen.h"
+#include "freeall.h"
 
-void freeAll(char **s, int size) {
-    for (int i = 0; i < size; i++)
-        free(s[i]);
-} 
 int main(void) {
     char *arr[5];
     int i = 0, max = 0, maxidx = 0;
