@@ -9,16 +9,12 @@ int main(void) {
     char *tp = malloc(102), *xp;
 
     for (i = 0; i < 5; i++) {
-        a[i] = malloc(102);
-        xp = fgets(a[i], 102, stdin);
         char temp[102];
-        strncpy(temp, xp, 102);
+        fgets(temp, 102, stdin);
         temp[mystrlen(temp) - 2] = '\0';
-    
-        strncpy(a[i], temp, 102);
 
-        // Testing...
-        printf(" test %s\n", a[i]);
+        a[i] = malloc(102);
+        strncpy(a[i], temp, 102);
 
         int n = mystrlen(a[i]) - 1;
         if (n > max) {
