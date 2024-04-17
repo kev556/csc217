@@ -11,9 +11,9 @@ int main(void) {
         char temp[102];
         fgets(temp, 102, stdin);
         temp[mystrlen(temp) - 2] = '\0';
+
         arr[i] = malloc(102);
         strncpy(arr[i], temp, 102);
-
 
         int n = mystrlen(arr[i]) - 1;
         if (n > max) {
@@ -23,6 +23,11 @@ int main(void) {
     }
     for (i = 0; i < 5; i++)
         printf("%s\n", arr[i]);
+    
     printf("The largest string entered is %s, with a length of %d \n", arr[maxidx], max);
+
+    for (i = 0; i < 5; i++)
+        free(arr[i]);
+
     return 0;
 }
