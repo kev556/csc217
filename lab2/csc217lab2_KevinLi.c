@@ -1,8 +1,6 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "mystrlen.h"
 #include "enterInput.h"
+#include "cliInput.h"
 
 int main(int argc, char **argv) {
     if (argc == 1)
