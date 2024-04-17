@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include "printAll.h"
 
-void printAll(const char **s[]) {
-    printf("%s", *s[0]);
+void printAll(char **s) {
+    char **temp = s;
+    while(*s)
+        printf("%s\n", *s++);
+    s = temp;
 }
