@@ -8,12 +8,16 @@ int main(void) {
     int i = 0, max = 0, maxidx = 0;
 
     for (i = 0; i < 5; i++) {
-        char temp[102];
-        fgets(temp, 102, stdin);
-        temp[mystrlen(temp) - 2] = '\0';
-
         a[i] = malloc(102);
+        xp = fgets(a[i], 102, stdin);
+        char temp[102];
+        strncpy(temp, xp, 102);
+        temp[mystrlen(temp) - 2] = '\0';
+    
         strncpy(a[i], temp, 102);
+
+        // Testing...
+        printf(" test %s\n", a[i]);
 
         int n = mystrlen(a[i]) - 1;
         if (n > max) {
