@@ -1,4 +1,4 @@
 #ifndef ENTERINPUT_H_
 #define ENTERINPUT_H_
-    void enterInput();
+    char ** enterInput(int *max, int *maxidx);
 #endif
