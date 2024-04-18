@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mystrlen.h"
+#include "user.h"
 
 void userInput(char **arr, int *max, int *maxidx) {
     int i = 0;
