@@ -3,16 +3,12 @@
 #include <string.h>
 #include "mystrlen.h"
 
-char ** userInput(int *max, int *maxidx) {
-    char *arr[5];
-    int i = 0, maxidx = 0, max = 0;
+void userInput(char **arr, int *max, int *maxidx) {
+    int i = 0;
 
     for (; i < 5; i++) {
-        char temp[102];
-        fgets(temp, 102, stdin);
-
         arr[i] = malloc(102);
-        strncpy(arr[i], temp, 102);
+        fgets(arr[i], 102, stdin);
 
         int n = mystrlen(arr[i]) - 1;
 
@@ -21,5 +17,4 @@ char ** userInput(int *max, int *maxidx) {
             *maxidx = i;
         }
     }
-    return arr;
 }
