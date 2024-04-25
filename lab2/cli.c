@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "mystrlen.h"
+#include "cli.h"
 
 void cliInput(int argc, char **argv, char **arr, char** max, int* maxlen) {
     *argv++;
