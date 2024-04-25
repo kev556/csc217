@@ -4,7 +4,7 @@
 #include "cli.h"
 
 int main(int argc, char **argv) {
-    char *arr[5];
+    char **arr = malloc(5 * (sizeof(char) * 102));
     int maxidx = 0, max = 0;
 
     if (argc == 1)
