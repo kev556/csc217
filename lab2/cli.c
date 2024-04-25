@@ -3,20 +3,20 @@
 #include <string.h>
 #include "mystrlen.h"
 
-void cliInput(int length, char **argv, char **arr, char** max, int* maxlen) {
-    int i = 0;
+void cliInput(int argc, char **argv, char **arr, char** max, int* maxlen) {
     *argv++;
 
-    for (; i < length; i++) {
+    for (int i = 0; i < argc - 1; i++) {
         *arr = malloc(102);
-        strncpy(*arr, *argv++, 102);
+        strncpy(*arr, *argv, 102);
 
         int n = mystrlen(*arr) - 1;
 
         if (n > *maxlen) {
-            *max = *arr;
+            strncpy(*max, *arr, 102);
             *maxlen = n;
         }
         *arr++;
+        *argv++;
     }
 }

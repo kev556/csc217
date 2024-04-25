@@ -13,7 +13,7 @@ void userInput(char **arr, char **max, int *maxlen) {
         int n = mystrlen(*arr) - 1;
 
         if (n > *maxlen) {
-            *max = *arr;
+            strncpy(*max, *arr, 102);
             *maxlen = n;
         }
         *arr++;

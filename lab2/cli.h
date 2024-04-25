@@ -1,4 +1,4 @@
 #ifndef CLIINPUT_H_
 #define CLIINPUT_H_
-    void cliInput(int length, char **argv, char **arr, int *max, int *maxidx);
+    void cliInput(int argc, char **argv, char **arr, char **max, int *maxlen);
 #endif
