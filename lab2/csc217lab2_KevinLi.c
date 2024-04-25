@@ -20,7 +20,8 @@ int main(int argc, char **argv) {
         free(*arr);
         *arr++;
     }
-    printf("The largest string entered is [ %s ] with a length of %d \n", max, maxlen);
+    printf("The largest string entered is %s with a length of %d \n", max, maxlen);
+    free(arr);
     free(max);
 
     return 0;
