@@ -4,7 +4,7 @@
 
 /* Loops through the string pointer until the pointer points to null. 
  subtracting the end memory address from the beginning results in the length of the string*/
-unsigned long long mystrlen(const char *s) {
+size_t mystrlen(const char *s) {
 	const char *t = s;
 	while (*s++);
 	return s-t;
