@@ -8,7 +8,7 @@ void userInput(char **arr, char **max, int *maxlen) {
     int i = 0;
 
     for (; i < 5; i++) {
-        *arr = malloc(102);
+        *arr = malloc(102 * sizeof(char));
         fgets(*arr, 102, stdin);
 
         int n = mystrlen(*arr) - 1;

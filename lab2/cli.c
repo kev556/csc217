@@ -8,7 +8,7 @@ void cliInput(int argc, char **argv, char **arr, char** max, int* maxlen) {
     *argv++;
 
     for (int i = 0; i < argc - 1; i++) {
-        *arr = malloc(102);
+        *arr = malloc(102 * sizeof(char));
         strncpy(*arr, *argv, 102);
 
         int n = mystrlen(*arr) - 1;
