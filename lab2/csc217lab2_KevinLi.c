@@ -4,8 +4,8 @@
 #include "cli.h"
 
 int main(int argc, char **argv) {
-    char **arr = malloc(102 * 5);
-    char *max = malloc(102);
+    char **arr = malloc(sizeof(char) * 102 * 5);
+    char *max = malloc(sizeof(char) * 102);
     int maxlen = 0;
 
     if (argc == 1)
