@@ -11,3 +11,10 @@ void freeList(Node *head) {
 		head = temp -> next;
 	}
 }
+
+void printAll(Node *head) {
+	while (head) {
+		printf("%s", head->data);
+		head = head->next;
+	}
+}
