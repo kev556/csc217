@@ -4,6 +4,8 @@
 #include "mystrlen.h"
 #include "user.h"
 
+// Kevin Li N00969115
+
 void userInput(char **arr, char **max, int *maxlen) {
     int i = 0;
 

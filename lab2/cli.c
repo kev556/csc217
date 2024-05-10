@@ -4,6 +4,8 @@
 #include "mystrlen.h"
 #include "cli.h"
 
+// Kevin Li N00969115
+
 void cliInput(int argc, char **argv, char **arr, char** max, int* maxlen) {
     *argv++;
 
