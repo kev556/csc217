@@ -1,11 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <node.h>
 
-typedef struct node {
-	char *data;
-	Node *next;
-} Node;
 
 int main(int argc, char **argv){
 	Node *head = NULL;
@@ -24,10 +21,12 @@ int main(int argc, char **argv){
 				char *word = malloc(80);
 				while (fgets(word, 80, stdin) != EOF) {
 					Node *temp = malloc(sizeof(Node));
+					temp->data = malloc(80);
 					temp->data = word;
 					temp->next = head;
 					head = temp;
 				}
+				free(word);
 				printAll(head);
 		}
 	} 
