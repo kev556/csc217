@@ -1,20 +1,27 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 #include "node.h"
 
 
 int main(int argc, char **argv){
-	Node *head = NULL;
+	Node *head = (Node *) malloc(sizeof(Node *));
+	head->next = NULL;
 
 	int opt;
 	if (argc == 1) {
 		char *word = malloc(80);
-		while (*(fgets(word, 80, stdin)) != EOF) {
-			Node *temp = malloc(sizeof(Node));
-			temp->data = malloc(80);
-			temp->data = word;
+		while (fgets(word, 80, stdin)) {
+			Node *temp = (Node *) malloc(sizeof(Node *));
+			if (temp == NULL) {
+				printf("Null pointer error");
+				exit(1);
+			}
+			
+			temp->data = strdup(word);
 			temp->next = head;
+
 			head = temp;
 		}
 		free(word);
