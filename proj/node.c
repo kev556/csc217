@@ -13,10 +13,9 @@ void freeList(Node *head) {
 	}
 }
 
-void printAll(Node *head) {
-	puts("got here");
+void printList(Node *head) {
 	Node *current = head;
-	while (current) {
+	while (current != NULL) {
 		printf("%s\n", current->data);
 		current = current->next;
 	}

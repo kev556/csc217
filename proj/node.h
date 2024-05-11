@@ -5,6 +5,6 @@
 		char *data;
 		Node *next;
 	};
-	void freeList(Node *head);
-	void printAll(Node *head);
+	void freeLinkedList(Node *head);
+	void printLinkedList(Node *head);
 #endif
