@@ -2,23 +2,21 @@
 #include <stdlib.h>
 #include "node.h"
 
-typedef struct node {
-	char *data;
-	Node *next;
-} Node;
-
 void freeList(Node *head) {
 	Node *temp;
-	while (head){
-		temp = head;
-		free(head);
+	Node *current = head;
+	while (head) {
+		temp = current;
+		free(head -> data);
 		head = temp -> next;
 	}
 }
 
 void printAll(Node *head) {
-	while (head) {
-		printf("%s", head->data);
-		head = head->next;
+	puts("got here");
+	Node *current = head;
+	while (current) {
+		printf("%s\n", current->data);
+		current = current->next;
 	}
 }
