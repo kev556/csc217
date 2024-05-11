@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "node.h"
 
-void freeList(Node *head) {
+void freeLinkedList(Node *head) {
 	Node* temp;
 	Node* current = head;
 	while (current) {
@@ -13,7 +13,7 @@ void freeList(Node *head) {
 	}
 }
 
-void printList(Node *head) {
+void printLinkedList(Node *head) {
 	Node *current = head;
 	while (current != NULL) {
 		printf("%s\n", current->data);
