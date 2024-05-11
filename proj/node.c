@@ -3,12 +3,13 @@
 #include "node.h"
 
 void freeList(Node *head) {
-	Node *temp;
-	Node *current = head;
-	while (head) {
+	Node* temp;
+	Node* current = head;
+	while (current) {
 		temp = current;
-		free(head -> data);
-		head = temp -> next;
+		current = temp -> next;
+		free(temp -> data);
+		free(temp);
 	}
 }
 
