@@ -1,42 +1,39 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
-#include "node.h"
+#include "list.h"
+#include "str.h"
 
+int main(int argc, char **argv) {
+	Node *stack = NULL;
+	Node *queue = NULL;
+	char *filename = *argv;
 
-int main(int argc, char **argv){
-	Node *head = (Node *) malloc(sizeof(Node *));
-	head->next = NULL;
-
-	int opt;
 	if (argc == 1) {
-		char *word = malloc(80);
+		char* word = malloc(80);
 		while (fgets(word, 80, stdin)) {
-			Node *temp = (Node *) malloc(sizeof(Node *));
-			if (temp == NULL) {
-				printf("Null pointer error");
-				exit(1);
-			}
-			
-			temp->data = strdup(word);
-			temp->next = head;
-
-			head = temp;
+			stack = push(stack, word);
 		}
 		free(word);
-		printAll(head);
+		printlist(stack);
+		deletelist(stack);
 		return 0;
 	}
-	while ((opt = getopt(argc, argv, "hf:")) != -1) {
-		switch (opt) {
-			case 'h':
-				printf("hi");
-				return 0;
-			case 'f':
-				printf("hi");
-			default:
-				break;
-		}
-	} 
+	switch(*(++(*++argv))) {
+		case 'f':
+			FILE *fp = fopen(filename, "r");
+			if (fp == NULL) {
+				fprintf(stderr, "File %s does not exist, exiting program", filename);
+				exit(EXIT_FAILURE);
+			}
+			break;
+		case 'h':
+			printf("Usage: %s [OPTION...] [OPTIONAL INPUT FILE WITH -f]\n\n" 
+				   "-f=INPUTFILE \t\t 	  defines a file to be used as input\n"
+				   "-h      \t\t\t     give this help list\n", filename);
+			break;
+
+	}
+	
+	
+	return 0;
 }
