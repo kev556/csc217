@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 				   "-h      \t\t\t     give this help list\n", filename);
 			break;
 		default: 
-			fprintf(stderr, "command %c does not exist, exiting program\n", **argv); 
+			fprintf(stderr, "argument %c does not exist, exiting program\n", **argv); 
 			exit(EXIT_FAILURE); // Prints to stderr and exits if user passes in a cmd line arg that DNE
 	}
 	
