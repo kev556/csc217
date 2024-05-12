@@ -9,4 +9,4 @@ str.o: str.c str.h
 	gcc -c -g str.c -o str.o
 
 clean:
-	rm -f proj.o list.o
+	rm -f proj.o list.o str.o
