@@ -5,8 +5,8 @@
 		char *data;
 		Node *next;
 	};
-	Node* enqueue(Node *head, char *word);
-	Node* push(Node *head, char *word);
+	Node *push(Node *head, char *word);
+	Node *enqueue(Node *head, char *word);
 	void deletelist(Node *head);
 	void printlist(Node *head);
 #endif

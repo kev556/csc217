@@ -3,19 +3,25 @@
 #include "list.h"
 #include "str.h"
 
-Node* enqueue(Node *head, char *word) {
+Node *enqueue(Node *head, char *word) {
 	Node *current = head;
-	Node *temp = (Node*)malloc(sizeof(Node));
+	Node *first = current;
+	Node *temp = (Node*)malloc(sizeof(Node*));
+
 	temp->data = malloc(80);
+	temp->next = NULL;
+
 	mystrncpy(temp->data, word, 80);
 
-	while (current)
+	if (!current)
+		return temp;
+	while (current->next)
 		current = current->next;
 	current->next = temp;
-	return current;
+	return first;
 }
 Node *push(Node *head, char *word) {
-	Node *temp = (Node*)malloc(sizeof(Node));
+	Node *temp = (Node*)malloc(sizeof(Node*));
 	temp->data = malloc(80);
 	mystrncpy(temp->data, word, 80);
 	temp->next = head;
