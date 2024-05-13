@@ -42,6 +42,7 @@ int main(int argc, char **argv) {
             		wordPtr++;
 				}
 				stack = push(stack, startPtr); // The code written above skips the last word due to the null escape character at the end of a file. This push will include it.
+				queue = enqueue(queue, startPtr); 
 			}
 			free(word);
 			fclose(fp);
