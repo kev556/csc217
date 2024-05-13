@@ -12,10 +12,13 @@ int main(int argc, char **argv) {
 	if (argc == 1) {
 		while (fgets(word, 80, stdin)) {
 			stack = push(stack, word);
+			queue = enqueue(queue, word);
 		}
 		free(word);
 		printlist(stack);
+		printlist(queue);
 		deletelist(stack);
+		deletelist(queue);
 		return 0;
 	}
 	switch(*(++(*++argv))) {
@@ -33,6 +36,7 @@ int main(int argc, char **argv) {
             		if (*wordPtr == ' ' || *wordPtr == '\n') {
 						*wordPtr = '\0'; // Replaces the space or \n with a null terminator
                 		stack = push(stack, startPtr); // Pushes startPtr itself, doing this passes the string of all chars between startPtr and the first \0 after it
+						queue = enqueue(queue, startPtr); 
                 		startPtr = wordPtr + 1; // Moves startPtr to after 
             		}
             		wordPtr++;
@@ -42,7 +46,9 @@ int main(int argc, char **argv) {
 			free(word);
 			fclose(fp);
 			printlist(stack);
+			printlist(queue);
 			deletelist(stack);
+			deletelist(queue);
 			return(0);
 			break;
 		case 'h':
