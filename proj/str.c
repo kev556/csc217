@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 #include "str.h"
 
 size_t mystrlen(const char *str) {
@@ -16,4 +17,7 @@ void mystrncpy(char *dest, const char *src, size_t lim) {
 		src++;
 	}
 	*dest = '\0';
+}
+bool isdigit(char c) {
+	return (c >= '0' && c <= '9');
 }
