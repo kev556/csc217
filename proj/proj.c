@@ -7,9 +7,9 @@
 int main(int argc, char **argv) {
 	Node *stack = NULL;
 	Node *queue = NULL;
-	char* word = malloc(80);
 	
 	if (argc == 1) {
+		char* word = malloc(80);
 		while (fgets(word, 80, stdin)) {
 			stack = push(stack, word);
 			queue = enqueue(queue, word);
@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
 		return 0;
 	}
 	else {
-		getFileInput(&stack, &queue, argc, argv, word);
+		getFileInput(&stack, &queue, argc, argv);
 		free(word);
 		printlist(stack);
 		printlist(queue);
