@@ -36,7 +36,7 @@ int main(int argc, char **argv) {
 		free(delete); // frees the memory that wont be used anymore
 	}
 
-	printlist(stack);
+	printlist(stack); // Prints and frees both lists
 	deletelist(stack);
 	printlist(queue);
 	deletelist(queue);

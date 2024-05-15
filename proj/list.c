@@ -1,4 +1,4 @@
-// Kevin Li N00969115 Grade: 80
+// Kevin Li N00969115 Grade: 100
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -58,26 +58,28 @@ void printlist(Node *head) {
 		current = current->next;
 	}
 }
-// Deletes every node that contains the word specified, inspired by ChatGPT
+// Deletes every node that contains the word specified, given by Kyle Castellano
 Node *deleteword(Node *head, char *word) {
-	Node *prev = NULL;
-    Node *current = head;
-    
+	while (head && mystrcmp(head -> data, word) == 0) { // this is to easily delete any nodes in front in the edge case that there are matches in front.
+		Node *temp = head; // temporary node so we can gain access to head to free it
+        head = head -> next;
+		free(temp -> data); 
+		free(temp);
+	}
+	if (head == NULL) // In the case that all values have been freed, returns an empty list
+        return head;
+    Node* prev = head;// If not, sets up for iteration through list
+    Node* current = prev->next;
+
     while (current != NULL) {
-        if (mystrcmp(current->data, word) == 0) {
-            Node *temp = current;
-            current = current->next;
-            free(temp->data);
-            free(temp);
-            if (prev == NULL)
-                head = current;
-			else
-                prev->next = current;
-        } 
-		else {
-            prev = current;
-            current = current->next;
-        }
+        if (mystrcmp(current -> data, word) == 0) {
+			prev -> next = current -> next; // If there is a match, set prevs next to currents next
+			free(current -> data); // Frees inner before outer
+			free(current);
+		} 
+        else
+            prev = current; //If not, increments both by 1 place
+        current = prev -> next;
     }
     return head;
 }

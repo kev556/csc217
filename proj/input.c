@@ -6,13 +6,14 @@
 #include "str.h"
 #include "input.h"
 
+// Reads all arguments and passes all flags for each case back to the main function
 void readArgs(int argc, char **argv, char **filearg, int *limit, char **delete) {
 	int i = 1;
 
-	while (i < argc) { // We will access memory in i + 1, comparing with argc - 1 makes certain we do not go out of bounds
-		if (i + 1 >= argc) { // there are always an odd number of args in a valid series of args. If i is even and larger than argc, the args are invalid.
-			fprintf(stderr, "Invalid command or syntax. Exiting Program.\n");
-			exit(EXIT_FAILURE);
+	while (i < argc) { // comparing i with argc makes certain we do not go out of bounds
+		if (i + 1 >= argc) { // We will access memory in i + 1 to verify if there is an argument for an option.
+			fprintf(stderr, "Invalid arguments. Exiting Program.\n"); // there are always an odd number of args in a valid series of args. 
+			exit(EXIT_FAILURE); // If i is even and larger than argc, the args are invalid.
 		}
 		if (mystrcmp(*(argv + i), "-h") == 0) { // displays help message and exits if -h
 			printHelp(*argv);
@@ -24,14 +25,8 @@ void readArgs(int argc, char **argv, char **filearg, int *limit, char **delete) 
 			i += 2; // checks for more args
 		}
 		else if (mystrcmp(*(argv + i), "-n") == 0) { // If user defines a limit, reads the limit into *limit
-			if (myisdigit(**(argv + i + 1))) {
-				*limit = myatoi(*(argv + i + 1)); // Else, stores limit and checks for more args
-				i += 2;
-			}
-			else { // If the first digit is not a number, the arg is automatically invalid.
-				fprintf(stderr, "Invalid argument for -n. Exiting Program.\n");
-				exit(EXIT_FAILURE);
-			}
+			*limit = myatoi(*(argv + i + 1)); // Else, stores limit and checks for more args
+			i += 2;
 		}
 		else if (mystrcmp(*(argv + i), "-d") == 0){ // Reads in a word that should be deleted into buffer
 			*delete = malloc(80);
@@ -39,22 +34,28 @@ void readArgs(int argc, char **argv, char **filearg, int *limit, char **delete) 
 			i += 2;
 		}
 		else { // From the second arg onwards must be either -h, -f, -n, or -d. if not, exits with error
-			fprintf(stderr, "Invalid command or syntax. Exiting Program.\n");
+			fprintf(stderr, "Invalid arguments. Exiting Program.\n");
 			exit(EXIT_FAILURE);
 		}
 	}
 }
+// Reads user input from cli, stores each word into both the stack and queue, only reads limit amount of lines
 void readFromUser(Node **stack, Node **queue, int limit) {
 	char* word = (char *)malloc(80); // buffer for user input
 	int count = 0; // counter to prevent reading more than limit number of lines
 
-	while (count < limit && fgets(word, 80, stdin)) { // only reads in 80 characters for user input
+	while (count < limit && fgets(word, 80, stdin)) { // only reads in 80 characters for user input, limit times
+		char *temp = word + mystrlen(word) - 1;
+		if (*temp == '\n') // Entering user input will introduce \n that will mess up mystrcmp. This will remove the \n 
+			*temp = '\0';
+
 		*stack = push(*stack, word); // Subsequently pushes each word read in to the front
 		*queue = enqueue(*queue, word); // Subsequently pushes each word read in to the rear
-		count++;
+		count++; // increments count to keep track of limit
 	}
 	free(word); // Must deallocate unused memory to prevent memory leaks
 }
+// Reads words from file line by line, word by word. stores each word into both the stack and queue, only reads limit amount of lines
 void getFileInput(Node **stack, Node **queue, FILE *fp, int limit) {
     char *word = (char *) malloc(80); 
 	int count = 0;
