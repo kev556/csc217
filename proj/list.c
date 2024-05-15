@@ -1,43 +1,52 @@
+// Kevin Li N00969115 Grade: 80
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "list.h"
 #include "str.h"
 
+// Adds a new node with data word to the end of the list with first element head
 Node *enqueue(Node *head, char *word) {
-	Node *current = head;
-	Node *first = current;
-	Node *temp = (Node*)malloc(sizeof(Node*));
+	Node *current = head; // newnodeorary node for us to increment 
+	Node *newnode = (Node*)malloc(sizeof(Node*));
 
-	temp->data = malloc(80);
-	temp->next = NULL;
+	newnode->data = (char *)malloc(80); // Creates a buffer for the data inside node
+	newnode->next = NULL; // Must point to null as this node will be at the end of the list
 
-	mystrncpy(temp->data, word, 80);
+	mystrncpy(newnode->data, word, 80); // Copies a max of 80 chars from the word passed as param into the new node
 
-	if (!current)
-		return temp;
-	while (current->next)
-		current = current->next;
-	current->next = temp;
-	return first;
+	if (!current) // If list is empty, newnode becomes the first element 
+		return newnode;
+	while (current->next) // Increments until current is the last node in the list
+		current = current->next; 
+	current->next = newnode; // Sets the next node of the last node to the newly created node
+	return head; // is intended to be assigned to queue in main to represent the new queue with the newly created node at the end
 }
+
+// Adds a new node with data word to the front of the list with first element head
 Node *push(Node *head, char *word) {
-	Node *temp = (Node*)malloc(sizeof(Node*));
-	temp->data = malloc(80);
-	mystrncpy(temp->data, word, 80);
-	temp->next = head;
-	return temp;
+	Node *newnode = (Node*)malloc(sizeof(Node*));
+	newnode->data = (char *)malloc(80);
+
+	mystrncpy(newnode->data, word, 80);
+
+	newnode->next = head; // Puts the new node at the front of the list
+	return newnode; // intended to be assigned to stack, making newnode the defacto start of the list
 }
+
+// Frees all dynamically allocated Nodes in the list with first element head
 void deletelist(Node *head) {
-	Node* temp;
-	Node* current = head;
-	while (current) {
-		temp = current;
-		current = temp -> next;
-		free(temp -> data);
-		free(temp);
+	Node* prev; // Used so we can access the next value of the node that is about to be freed
+	Node* current = head; // Node to be iterated through
+
+	while (current) { // Loops until there are no Nodes in the list
+		prev = current; // sets the node to be freed to prev
+		current = prev -> next; // sets current to the next node
+		free(prev -> data); // Frees the node's data, then the node itself
+		free(prev);
 	}
 }
-
+// Prints every value in the list with first element head
 void printlist(Node *head) {
 	Node *current = head;
 	while (current != NULL) {
