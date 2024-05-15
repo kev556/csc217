@@ -15,8 +15,9 @@ Node *enqueue(Node *head, char *word) {
 
 	mystrncpy(newnode->data, word, 80); // Copies a max of 80 chars from the word passed as param into the new node
 
-	if (!current) // If list is empty, newnode becomes the first element 
+	if (head == NULL) // If list is empty, newnode becomes the first element 
 		return newnode;
+
 	while (current->next) // Increments until current is the last node in the list
 		current = current->next; 
 	current->next = newnode; // Sets the next node of the last node to the newly created node
@@ -29,6 +30,9 @@ Node *push(Node *head, char *word) {
 	newnode->data = (char *)malloc(80);
 
 	mystrncpy(newnode->data, word, 80);
+
+	if (head == NULL) // If list is empty, newnode becomes the first element 
+		return newnode;
 
 	newnode->next = head; // Puts the new node at the front of the list
 	return newnode; // intended to be assigned to stack, making newnode the defacto start of the list
@@ -54,16 +58,33 @@ void printlist(Node *head) {
 		current = current->next;
 	}
 }
-void deleteword(Node *head, char *word) {
-	Node *current = head;
+// Deletes every node that contains the word specified, inspired by Kyle Castellano
+Node *deleteword(Node *head, char *word) {
+	Node* current = head;
+    Node* previous = NULL;
+    Node* newHead = NULL; // New head of the list
 
-	while (current -> next) {
-		if (mystrcmp(current -> next -> data, word) == 0) {
-			Node *twoAfter = current -> next -> next;
-			free(current -> next -> data);
-			free(current -> next);
-			current -> next = twoAfter;
-		}
-		current = current -> next;
-	}
+    // Traverse the list
+    while (current != NULL) {
+        // Check if the current node contains the specified word
+        if (mystrcmp(current->data, word) == 0) {
+            Node* temp = current;
+            current = current->next;
+            // Free the memory of the node
+			free(temp -> data);
+            free(temp);
+        } 
+		else {
+		// If it's the first node that doesn't contain the word
+		if (newHead == NULL)
+			newHead = current;
+		if (previous != NULL)
+			previous->next = current;
+		previous = current;
+		current = current->next;
+        }
+    }
+    if (previous != NULL)
+        previous->next = NULL; // Set the last node's next to NULL
+    return newHead;
 }
