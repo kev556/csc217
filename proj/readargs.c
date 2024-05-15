@@ -6,10 +6,10 @@
 
 void readArgs(int argc, char **argv, char **filearg, int *limit, char **delete) {
 	int i = 1;
-	while (i < argc - 1){ // We will access memory in i + 1, comparing with argc - 1 makes certain we do not go out of bounds
+	while (i < argc){ // We will access memory in i + 1, comparing with argc - 1 makes certain we do not go out of bounds
 		if (mystrcmp(*(argv + i), "-h") == 0){
 			printHelp(*argv);
-			return 0;
+			exit(EXIT_SUCCESS);
 		}
 		else if (mystrcmp(*(argv + i), "-f") == 0){
 			mystrcpy(*filearg,*(argv + i + 1));
