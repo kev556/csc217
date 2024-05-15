@@ -44,7 +44,7 @@ bool myisdigit(char c) {
 }
 int myatoi(char *s) {
 	int total = 0, i = 0;
-	for (;myisdigit((*s) + i); i++)
-		total = total * 10 + (((*s + i)) - '0');
+	for (;myisdigit(*(s + i)); i++)
+		total = total * 10 + ((*s + i) - '0');
 	return total;
 }

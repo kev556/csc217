@@ -1,0 +1,8 @@
+{
+	"files.associations": {
+		"fileinput.h": "c",
+		"str.h": "c",
+		"readargs.h": "c",
+		"stdio.h": "c"
+	}
+}

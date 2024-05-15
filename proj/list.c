@@ -58,33 +58,26 @@ void printlist(Node *head) {
 		current = current->next;
 	}
 }
-// Deletes every node that contains the word specified, inspired by Kyle Castellano
+// Deletes every node that contains the word specified, inspired by ChatGPT
 Node *deleteword(Node *head, char *word) {
-	Node* current = head;
-    Node* previous = NULL;
-    Node* newHead = NULL; // New head of the list
-
-    // Traverse the list
+	Node *prev = NULL;
+    Node *current = head;
+    
     while (current != NULL) {
-        // Check if the current node contains the specified word
         if (mystrcmp(current->data, word) == 0) {
-            Node* temp = current;
+            Node *temp = current;
             current = current->next;
-            // Free the memory of the node
-			free(temp -> data);
+            free(temp->data);
             free(temp);
+            if (prev == NULL)
+                head = current;
+			else
+                prev->next = current;
         } 
 		else {
-		// If it's the first node that doesn't contain the word
-		if (newHead == NULL)
-			newHead = current;
-		if (previous != NULL)
-			previous->next = current;
-		previous = current;
-		current = current->next;
+            prev = current;
+            current = current->next;
         }
     }
-    if (previous != NULL)
-        previous->next = NULL; // Set the last node's next to NULL
-    return newHead;
+    return head;
 }

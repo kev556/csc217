@@ -1,16 +1,14 @@
-proj: proj.o fileinput.o list.o str.o readargs.o
-	gcc -Wall -pedantic -o proj -g proj.o fileinput.o list.o str.o readargs.o
+proj: proj.o list.o str.o input.o
+	gcc -Wall -pedantic -o proj -g proj.o list.o str.o input.o
 
-proj.o: proj.c list.h fileinput.h str.h
+proj.o: proj.c list.h input.h str.h
 	gcc -c -g proj.c -o proj.o
-fileinput.o: fileinput.c list.h fileinput.h
-	gcc -c -g fileinput.c -o fileinput.o
 list.o: list.c list.h str.h
 	gcc -c -g list.c -o list.o
 str.o: str.c str.h
 	gcc -c -g str.c -o str.o
-readargs.o: readargs.c readargs.h
-	gcc -c -g readargs.c -o readargs.o
+input.o: input.c input.h
+	gcc -c -g input.c -o input.o
 
 clean:
-	rm -f proj.o list.o str.o fileinput.o readargs.o
+	rm -f proj.o list.o str.o input.o
