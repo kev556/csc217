@@ -11,5 +11,5 @@
 	Node *enqueue(Node *head, char *word);
 	void deletelist(Node *head);
 	void printlist(Node *head);
-	void deleteword(char *word);
+	void deleteword(Node *head, char *word);
 #endif
