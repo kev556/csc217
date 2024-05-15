@@ -10,6 +10,9 @@ size_t mystrlen(const char *str) {
 	while (*str++);
 	return str - t - 1;
 }
+int mystrcmp(const char *s, const char *t) {
+	
+}
 void mystrncpy(char *dest, const char *src, size_t lim) {
 	size_t i = 0;
 
