@@ -54,3 +54,6 @@ void printlist(Node *head) {
 		current = current->next;
 	}
 }
+void deleteword(char *word) {
+	
+}
