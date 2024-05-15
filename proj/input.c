@@ -44,14 +44,13 @@ void readFromUser(Node **stack, Node **queue, int limit) {
 	char* word = (char *)malloc(80); // buffer for user input
 	int count = 0; // counter to prevent reading more than limit number of lines
 
-	while (count < limit && fgets(word, 80, stdin)) { // only reads in 80 characters for user input, limit times
+	while (++count < limit && fgets(word, 80, stdin)) { // only reads in 80 characters for user input, limit times
 		char *temp = word + mystrlen(word) - 1;
 		if (*temp == '\n') // Entering user input will introduce \n that will mess up mystrcmp. This will remove the \n 
 			*temp = '\0';
 
 		*stack = push(*stack, word); // Subsequently pushes each word read in to the front
 		*queue = enqueue(*queue, word); // Subsequently pushes each word read in to the rear
-		count++; // increments count to keep track of limit
 	}
 	free(word); // Must deallocate unused memory to prevent memory leaks
 }
@@ -83,6 +82,6 @@ void printHelp(char *name) {
     printf("usage: %s [OPTION] [OPTIONARG]...\n\n"
             "Prints all words passed to it via arguments\n\n"
             "-f\tFILE\t\t Specifies a file to read from\n"
-            "-n\tNUMBER\t\t Specifies the number of lines to read\n"
+            "-n\tNUMBER\t\t Specifies the number of lines to read from either file or user input\n"
             "-d\tWORD\t\t Specifies a word to delete from the list\n", name);
 }
