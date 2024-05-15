@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "fileinput.h"
+#include "readargs.h"
 
 void readArgs(int argc, char **argv, char **filearg, int *limit, char **deleteword) {
 	int i = 1;

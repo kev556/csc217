@@ -54,6 +54,16 @@ void printlist(Node *head) {
 		current = current->next;
 	}
 }
-void deleteword(char *word) {
-	
+void deleteword(Node *head, char *word) {
+	Node *current = head;
+
+	while (current -> next) {
+		if (mystrcmp(current -> next -> data, word) == 0) {
+			Node *twoAfter = current -> next -> next;
+			free(current -> next -> data);
+			free(current -> next);
+			current -> next = twoAfter;
+		}
+		current = current -> next;
+	}
 }
