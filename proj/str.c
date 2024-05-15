@@ -11,7 +11,11 @@ size_t mystrlen(const char *str) {
 	return str - t - 1;
 }
 int mystrcmp(const char *s, const char *t) {
-	
+	while (*s == *t) {
+		if (!*s)
+			return 0;
+	}
+	return *s - *t;
 }
 void mystrcpy(char *dest, const char *src) {
 	size_t i = 0;
