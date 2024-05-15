@@ -1,3 +1,5 @@
+// Kevin Li N00969115 Grade: 80
+
 #include <stdio.h>
 #include <stdbool.h>
 

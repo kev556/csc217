@@ -1,3 +1,5 @@
+// Kevin Li N00969115 Grade: 80
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -21,6 +23,12 @@ void mystrncpy(char *dest, const char *src, size_t lim) {
 	}
 	*dest = '\0';
 }
-bool isdigit(char c) {
+bool myisdigit(char c) {
 	return (c >= '0' && c <= '9');
+}
+int myatoi(char *s) {
+	int total = 0, i = 0;
+	for (;myisdigit((*s) + i); i++)
+		total = total * 10 + (((*s) + i) - '0');
+	return total;
 }

@@ -1,3 +1,5 @@
+// Kevin Li N00969115 Grade: 80
+
 #ifndef LIST_H_
 #define LIST_H_
 	typedef struct node Node;
