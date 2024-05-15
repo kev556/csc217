@@ -13,6 +13,16 @@ size_t mystrlen(const char *str) {
 int mystrcmp(const char *s, const char *t) {
 	
 }
+void mystrcpy(char *dest, const char *src) {
+	size_t i = 0;
+
+	while ((*dest = *src) != '\0') {
+		i++;
+		dest++;
+		src++;
+	}
+	*dest = '\0';
+}
 void mystrncpy(char *dest, const char *src, size_t lim) {
 	size_t i = 0;
 
