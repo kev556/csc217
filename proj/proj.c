@@ -2,9 +2,11 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "limits.h"
 #include "list.h"
 #include "str.h"
 #include "fileinput.h"
+#include "readargs.h"
 
 int main(int argc, char **argv) {
 	Node *stack = NULL;
@@ -26,20 +28,20 @@ int main(int argc, char **argv) {
 	else {
 		char *filearg = NULL; // Keeps track if any of these args are passed, idea from Kyle Castellano
 		int limit = INT_MAX;
-		char *deleteword = NULL;
+		char *delete = NULL;
 
-		readArgs(argc, argv, &filearg, &limit, &deleteword);
+		readArgs(argc, argv, &filearg, &limit, &delete);
 		FILE *fp = fopen(filearg, "r");
 		if (!fp) {
-			fprintf("File %s does not exist, exiting program\n", filearg);
+			fprintf(stderr, "File %s does not exist, exiting program\n", filearg);
 			exit(EXIT_FAILURE);
 		}
-		getFromFile(&stack, &queue, fp);
+		getFileInput(&stack, &queue, fp, limit);
 
 		printlist(stack);
 		deletelist(stack);
 		printlist(queue);
 		deletelist(queue);
-		
+
 	}
 }

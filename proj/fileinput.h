@@ -4,6 +4,6 @@
 
 #ifndef FILEINPUT_H_
 #define FILEINPUT_H_
-    void getFileInput(Node **stack, Node **queue, FILE *fp);
+    void getFileInput(Node **stack, Node **queue, FILE *fp, int limit);
     void printHelp(char* name);
 #endif

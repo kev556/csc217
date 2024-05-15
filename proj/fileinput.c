@@ -6,10 +6,11 @@
 #include "str.h"
 #include "fileinput.h"
 
-void getFileInput(Node **stack, Node **queue, FILE *fp) {
+void getFileInput(Node **stack, Node **queue, FILE *fp, int limit) {
     char *word = (char *)malloc(80);
+	int count = 0;
     
-    while (fgets(word, 80, fp)) { //Reads each line of the file
+    while (fgets(word, 80, fp) && count < limit) { //Reads each line of the file
         char* wordPtr = word; // Keeps track of the end of the currently processing word
         char* startPtr = word; // Keeps track of the beginning of the currently processing word
         while (*wordPtr) { // Goes through the current line of the file. 
@@ -20,6 +21,7 @@ void getFileInput(Node **stack, Node **queue, FILE *fp) {
                 startPtr = wordPtr + 1; // Moves startPtr to the start of the next word
             }
             wordPtr++; // increments wordPtr until it hits a space or newline, which marks the end of the current word
+			count++;
         }
         *stack = push(*stack, startPtr); // The code written above skips the last word due to the null escape character at the end of a file.
         *queue = enqueue(*queue, startPtr); // Theses pushes will include it.
